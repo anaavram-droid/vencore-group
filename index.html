@@ -77,6 +77,7 @@
   section{position:relative;scroll-margin-top:82px;}
   @media (max-width:900px){section{scroll-margin-top:66px;}}
   .pad{padding:clamp(76px,10vw,120px) 0;}
+  @media (max-width:760px){.pad{padding:56px 0;}}
 
   /* ========== photo placeholders (diagonal-stripe, per mockup) ========== */
   .ph{
@@ -158,17 +159,17 @@
   .nav-links a:hover::after{width:100%;}
 
   .btn-outline{
-    display:inline-block;border:1px solid var(--border-mid);color:var(--surface);
-    padding:12px 22px;font-family:'IBM Plex Mono',monospace;font-size:0.78rem;letter-spacing:0.1em;
+    display:inline-block;border:1px solid rgba(242,241,238,0.35);color:var(--surface);
+    padding:16px 26px;font-family:'IBM Plex Mono',monospace;font-size:0.78rem;letter-spacing:0.1em;
     text-transform:uppercase;transition:border-color .3s var(--ease), background-color .3s var(--ease);
-    white-space:nowrap;cursor:pointer;
+    white-space:nowrap;cursor:pointer;line-height:1;
   }
   .btn-outline:hover{border-color:var(--surface);}
 
   .btn-solid{
-    display:inline-flex;align-items:center;gap:10px;background:var(--surface);color:var(--bg);
-    padding:17px 28px;font-family:'IBM Plex Mono',monospace;font-size:0.78rem;font-weight:600;letter-spacing:0.1em;
-    text-transform:uppercase;border:1px solid var(--surface);
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--surface);color:var(--bg);
+    padding:16px 28px;font-family:'IBM Plex Mono',monospace;font-size:0.78rem;font-weight:600;letter-spacing:0.1em;
+    text-transform:uppercase;border:1px solid var(--surface);line-height:1;
     transition:background-color .3s var(--ease), color .3s var(--ease), gap .3s var(--ease);cursor:pointer;
   }
   .btn-solid:hover{background:var(--accent);border-color:var(--accent);color:var(--surface);gap:15px;}
@@ -205,7 +206,7 @@
     margin:56px clamp(22px,4.5vw,56px) 0;
   }
   @media (max-width:760px){
-    .hero-bottom{flex-direction:column;align-items:flex-start;}
+    .hero-bottom{flex-direction:column;align-items:flex-start;gap:26px;}
     .hero-actions{width:100%;}
     .hero-actions .btn-solid, .hero-actions .btn-outline{flex:1;text-align:center;justify-content:center;}
   }
@@ -266,10 +267,10 @@
   }
   .about h2{font-size:clamp(1.9rem,4vw,3.1rem);margin-top:20px;max-width:14ch;}
   .about-copy p{font-size:1.15rem;line-height:1.6;color:var(--body-grey-2);margin-bottom:28px;max-width:52ch;}
-  .about-tags{display:flex;gap:40px;flex-wrap:wrap;}
+  .about-tags{display:flex;gap:32px;flex-wrap:wrap;}
   .about-tag .big{font-family:'Anton',sans-serif;font-size:clamp(1.3rem,2.4vw,1.7rem);text-transform:uppercase;}
   .about-tag .small{font-family:'IBM Plex Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-top:5px;}
-  @media (max-width:800px){.about-grid{grid-template-columns:1fr;}}
+  @media (max-width:800px){.about-grid{grid-template-columns:1fr;gap:28px;padding-top:36px;}}
 
   /* mini why-vencore row under about */
   .why-strip{margin-top:56px;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--border);}
@@ -278,12 +279,12 @@
   .why-item h4{font-family:'IBM Plex Mono',monospace;font-size:0.82rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--surface);margin-bottom:8px;}
   .why-item p{font-size:0.92rem;color:var(--muted);line-height:1.5;}
   @media (max-width:860px){
-    .why-strip{grid-template-columns:repeat(2,1fr);}
+    .why-strip{grid-template-columns:repeat(2,1fr);margin-top:40px;}
     .why-item{border-right:1px solid var(--border);padding-top:22px;border-top:1px solid var(--border);}
     .why-item:nth-child(2n){border-right:none;}
   }
   @media (max-width:480px){
-    .why-strip{grid-template-columns:1fr;}
+    .why-strip{grid-template-columns:1fr;margin-top:32px;}
     .why-item{border-right:none;}
   }
 
@@ -328,7 +329,7 @@
   }
   .success-msg.show{display:flex;}
   .success-dot{width:7px;height:7px;background:var(--accent);border-radius:50%;flex:none;}
-  @media (max-width:800px){.quote-grid{grid-template-columns:1fr;}.field-row{flex-direction:column;}}
+  @media (max-width:800px){.quote-grid{grid-template-columns:1fr;gap:36px;}.field-row{flex-direction:column;}}
 
   /* ================= FOOTER ================= */
   footer{padding:36px 0;border-top:1px solid var(--border);}
