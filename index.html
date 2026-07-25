@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vencore — Concrete Construction, Melbourne &amp; Victoria</title>
+<meta name="description" content="Vencore is a self-performing structural concrete contractor delivering shotcrete, concrete pumping, steel fixing and structural concrete across Melbourne and Victoria.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  /* ================= TOKENS =================
+     Warm charcoal + off-white, IBM Plex Mono for
+     every label/number, Anton for display type.
+     Oxide red kept as a quiet accent only. */
+  :root{
+    --bg: #0e0f11;
+    --bg-stripe-a: #1c1e22;
+    --bg-stripe-b: #17191d;
+    --surface: #f2f1ee;
+    --border: #26292e;
+    --border-mid: #4a4d52;
+    --muted: #7d838a;
+    --muted-2: #6b7178;
+    --body-grey: #b9bcc1;
+    --body-grey-2: #c3c6cb;
+    --ink: #3a3f45;
+    --input-bg: #ffffff;
+    --input-border: #d6d3cc;
+    --input-placeholder: #8b9097;
+    --accent: #9c3c22;
+    --accent-dim: rgba(156,60,34,0.5);
+    --ease: cubic-bezier(.16,.8,.28,1);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--surface);
+    font-family:'Barlow',sans-serif;
+    font-weight:400;
+    line-height:1.5;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--surface);color:var(--bg);}
+
+  h1,h2,h3,h4{
+    font-family:'Anton',sans-serif;
+    font-weight:400;
+    text-transform:uppercase;
+    letter-spacing:0.005em;
+    line-height:0.94;
+  }
+  a{color:inherit;text-decoration:none;}
+  button, input, select, textarea{font-family:'Barlow',sans-serif;}
+  img{display:block;width:100%;height:100%;object-fit:cover;}
+
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.8rem;
+    letter-spacing:0.24em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .container{max-width:1320px;margin:0 auto;padding:0 clamp(22px,4.5vw,56px);}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease), transform .9s var(--ease);}
+  .reveal.is-visible{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    *{scroll-behavior:auto !important;}
+  }
+
+  section{position:relative;scroll-margin-top:82px;}
+  @media (max-width:900px){section{scroll-margin-top:66px;}}
+  .pad{padding:clamp(76px,10vw,120px) 0;}
+
+  /* ========== photo placeholders (diagonal-stripe, per mockup) ========== */
+  .ph{
+    position:relative;
+    background:repeating-linear-gradient(135deg, var(--bg-stripe-a) 0 14px, var(--bg-stripe-b) 14px 28px);
+    border:1px solid var(--border);
+    display:flex;
+    align-items:flex-end;
+    overflow:hidden;
+  }
+  .ph-tag{
+    position:relative;z-index:1;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--muted-2);
+    padding:18px;
+  }
+  .real-photo{
+    position:relative;overflow:hidden;background:var(--bg-stripe-b);
+    border:1px solid var(--border);
+  }
+  .real-photo img{
+    width:100%;height:100%;object-fit:cover;
+    filter:grayscale(1) contrast(1.08);
+    display:block;
+  }
+  .real-photo::before{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(0,0,0,0) 55%, rgba(0,0,0,0.65) 100%);
+    pointer-events:none;
+  }
+  .real-photo-caption{
+    position:absolute;left:0;right:0;bottom:0;z-index:2;
+    display:flex;justify-content:space-between;align-items:flex-end;gap:12px;
+    padding:16px 18px;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;
+    color:rgba(242,241,238,0.85);
+  }
+  .real-photo-caption .idx{color:rgba(242,241,238,0.4);white-space:nowrap;}
+
+  /* ================= HEADER ================= */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    padding:20px 0;
+    transition:background-color .4s var(--ease), padding .4s var(--ease), border-color .4s var(--ease);
+    border-bottom:1px solid transparent;
+  }
+  header.scrolled{
+    background:rgba(14,15,17,0.94);
+    backdrop-filter:blur(10px);
+    padding:14px 0;
+    border-bottom:1px solid var(--border);
+  }
+  .header-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;}
+  .logo-lockup{display:flex;align-items:center;gap:11px;}
+  .logo-mark{
+    width:26px;height:26px;flex:none;
+    background:var(--surface);
+    clip-path:polygon(0 0,100% 0,100% 70%,50% 100%,0 70%);
+  }
+  .logo-word{
+    font-family:'Anton',sans-serif;font-weight:400;
+    font-size:1.35rem;letter-spacing:0.02em;text-transform:uppercase;
+    color:var(--surface);
+  }
+  nav{display:flex;align-items:center;gap:36px;}
+  .nav-links{display:flex;gap:32px;}
+  .nav-links a{
+    font-family:'IBM Plex Mono',monospace;font-size:0.8rem;letter-spacing:0.08em;
+    text-transform:uppercase;color:var(--body-grey);position:relative;padding-bottom:4px;
+    transition:color .3s var(--ease);
+  }
+  .nav-links a::after{
+    content:"";position:absolute;left:0;bottom:0;width:0%;height:1px;background:var(--accent);
+    transition:width .35s var(--ease);
+  }
+  .nav-links a:hover{color:var(--surface);}
+  .nav-links a:hover::after{width:100%;}
+
+  .btn-outline{
+    display:inline-block;border:1px solid var(--border-mid);color:var(--surface);
+    padding:12px 22px;font-family:'IBM Plex Mono',monospace;font-size:0.78rem;letter-spacing:0.1em;
+    text-transform:uppercase;transition:border-color .3s var(--ease), background-color .3s var(--ease);
+    white-space:nowrap;cursor:pointer;
+  }
+  .btn-outline:hover{border-color:var(--surface);}
+
+  .btn-solid{
+    display:inline-flex;align-items:center;gap:10px;background:var(--surface);color:var(--bg);
+    padding:17px 28px;font-family:'IBM Plex Mono',monospace;font-size:0.78rem;font-weight:600;letter-spacing:0.1em;
+    text-transform:uppercase;border:1px solid var(--surface);
+    transition:background-color .3s var(--ease), color .3s var(--ease), gap .3s var(--ease);cursor:pointer;
+  }
+  .btn-solid:hover{background:var(--accent);border-color:var(--accent);color:var(--surface);gap:15px;}
+
+  .btn-dark{
+    display:inline-block;background:var(--bg);color:var(--surface);
+    padding:18px;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:0.78rem;font-weight:600;
+    letter-spacing:0.1em;text-transform:uppercase;border:1px solid var(--bg);cursor:pointer;width:100%;
+    transition:background-color .3s var(--ease), color .3s var(--ease);
+  }
+  .btn-dark:hover{background:var(--accent);border-color:var(--accent);}
+
+  .menu-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;z-index:200;}
+  .menu-toggle span{width:24px;height:2px;background:var(--surface);display:block;transition:transform .3s var(--ease), opacity .3s var(--ease);}
+
+  /* ================= HERO ================= */
+  .hero{padding:calc(96px + 3vw) 0 0;position:relative;}
+  .hero-grid-lines{
+    position:absolute;inset:0;
+    background-image:repeating-linear-gradient(90deg, var(--border) 0 1px, transparent 1px 240px);
+    opacity:0.6;pointer-events:none;
+  }
+  .hero-inner{position:relative;}
+  .hero h1{font-size:clamp(2.5rem, 6.6vw, 6.8rem);max-width:18ch;text-transform:uppercase;}
+  .hero-bottom{
+    display:flex;align-items:flex-end;justify-content:space-between;gap:48px;
+    margin-top:38px;flex-wrap:wrap;
+  }
+  .hero-sub{max-width:540px;font-size:1.15rem;line-height:1.55;color:var(--body-grey-2);}
+  .hero-actions{display:flex;gap:14px;flex:none;flex-wrap:wrap;}
+
+  .hero-image{
+    height:min(52vw, 440px);min-height:260px;
+    margin:56px clamp(22px,4.5vw,56px) 0;
+  }
+  @media (max-width:760px){
+    .hero-bottom{flex-direction:column;align-items:flex-start;}
+    .hero-actions{width:100%;}
+    .hero-actions .btn-solid, .hero-actions .btn-outline{flex:1;text-align:center;justify-content:center;}
+  }
+
+  /* ================= MARQUEE ================= */
+  .marquee{
+    margin-top:clamp(56px,8vw,84px);
+    border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+    overflow:hidden;white-space:nowrap;
+  }
+  .marquee-track{display:inline-flex;animation:bdscroll 30s linear infinite;}
+  .marquee-track span{
+    font-family:'Anton',sans-serif;font-size:clamp(1.4rem,3.4vw,2.2rem);letter-spacing:0.02em;
+    text-transform:uppercase;color:var(--border);padding:20px 0;white-space:nowrap;
+  }
+  @keyframes bdscroll{to{transform:translateX(-50%);}}
+
+  /* ================= INTRO STATEMENT ================= */
+  .intro-statement{
+    font-size:clamp(1.35rem,2.6vw,1.85rem);line-height:1.5;color:var(--body-grey-2);
+    max-width:56ch;font-weight:400;
+  }
+  .intro-statement strong{color:var(--surface);font-weight:600;}
+  .intro-meta{margin-top:28px;display:flex;gap:14px;align-items:center;color:var(--muted);}
+  .intro-meta .dot{width:5px;height:5px;background:var(--accent);border-radius:50%;}
+
+  /* ================= SERVICES ================= */
+  .services-head{display:flex;justify-content:space-between;align-items:baseline;gap:24px;margin-bottom:48px;flex-wrap:wrap;}
+  .services h2{font-size:clamp(2.1rem,4.6vw,3.5rem);}
+  .service-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+    background:var(--border);border:1px solid var(--border);
+  }
+  .service-card{background:var(--bg);padding:38px 30px 42px;transition:background-color .35s var(--ease);}
+  .service-card:hover{background:#111214;}
+  .service-num{font-family:'IBM Plex Mono',monospace;font-size:0.85rem;color:var(--accent);margin-bottom:52px;}
+  .service-card h3{font-size:clamp(1.5rem,2.3vw,2.1rem);margin-bottom:14px;}
+  .service-card p{font-size:1rem;line-height:1.55;color:var(--body-grey);}
+  @media (max-width:860px){.service-grid{grid-template-columns:repeat(2,1fr);}}
+  @media (max-width:560px){.service-grid{grid-template-columns:1fr;}.service-num{margin-bottom:28px;}}
+
+  /* ================= PROJECTS ================= */
+  .projects h2{font-size:clamp(2.1rem,4.6vw,3.5rem);}
+  .proj-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:22px;margin-top:44px;}
+  .proj-photo{height:340px;}
+  .proj-caption{
+    display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+    padding:16px 2px 0;flex-wrap:wrap;
+  }
+  .proj-caption .name{font-family:'Anton',sans-serif;font-size:clamp(1.15rem,2vw,1.5rem);text-transform:uppercase;}
+  .proj-caption .meta{font-family:'IBM Plex Mono',monospace;font-size:0.76rem;color:var(--muted);white-space:nowrap;}
+  @media (max-width:860px){.proj-grid{grid-template-columns:1fr;}.proj-photo{height:300px;}}
+
+  /* ================= ABOUT ================= */
+  .about-grid{
+    display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(32px,5vw,64px);
+    border-top:1px solid var(--border);padding-top:clamp(48px,7vw,64px);align-items:start;
+  }
+  .about h2{font-size:clamp(1.9rem,4vw,3.1rem);margin-top:20px;max-width:14ch;}
+  .about-copy p{font-size:1.15rem;line-height:1.6;color:var(--body-grey-2);margin-bottom:28px;max-width:52ch;}
+  .about-tags{display:flex;gap:40px;flex-wrap:wrap;}
+  .about-tag .big{font-family:'Anton',sans-serif;font-size:clamp(1.3rem,2.4vw,1.7rem);text-transform:uppercase;}
+  .about-tag .small{font-family:'IBM Plex Mono',monospace;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-top:5px;}
+  @media (max-width:800px){.about-grid{grid-template-columns:1fr;}}
+
+  /* mini why-vencore row under about */
+  .why-strip{margin-top:56px;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--border);}
+  .why-item{padding:26px 20px 26px 0;border-right:1px solid var(--border);}
+  .why-item:last-child{border-right:none;}
+  .why-item h4{font-family:'IBM Plex Mono',monospace;font-size:0.82rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--surface);margin-bottom:8px;}
+  .why-item p{font-size:0.92rem;color:var(--muted);line-height:1.5;}
+  @media (max-width:860px){
+    .why-strip{grid-template-columns:repeat(2,1fr);}
+    .why-item{border-right:1px solid var(--border);padding-top:22px;border-top:1px solid var(--border);}
+    .why-item:nth-child(2n){border-right:none;}
+  }
+  @media (max-width:480px){
+    .why-strip{grid-template-columns:1fr;}
+    .why-item{border-right:none;}
+  }
+
+  /* ================= QUOTE + CONTACT ================= */
+  .quote-section{background:var(--surface);color:var(--bg);}
+  .quote-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,64px);align-items:start;}
+  .quote-grid h2{font-size:clamp(2.6rem,6vw,4.6rem);}
+  .quote-copy p{font-size:1.1rem;line-height:1.55;color:var(--ink);margin-top:18px;max-width:440px;}
+  .quote-contact{
+    font-family:'IBM Plex Mono',monospace;font-size:0.9rem;color:var(--ink);margin-top:32px;line-height:2.1;
+  }
+  .quote-contact a{border-bottom:1px solid transparent;transition:border-color .3s var(--ease), color .3s var(--ease);}
+  .quote-contact a:hover{color:var(--accent);border-color:var(--accent);}
+
+  .form-col{display:flex;flex-direction:column;gap:12px;}
+  .field-row{display:flex;gap:12px;}
+  .field{
+    flex:1;background:var(--input-bg);border:1px solid var(--input-border);
+    padding:15px 16px;font-family:'IBM Plex Mono',monospace;font-size:0.85rem;
+  }
+  .field label{display:block;font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+  .field input, .field select, .field textarea{
+    width:100%;border:none;outline:none;background:transparent;font-family:'Barlow',sans-serif;
+    font-size:0.98rem;color:var(--bg);
+  }
+  .field input::placeholder, .field textarea::placeholder{color:var(--input-placeholder);}
+  .field textarea{resize:vertical;min-height:78px;font-family:'Barlow',sans-serif;}
+  .field select{cursor:pointer;}
+
+  .file-field{
+    background:var(--input-bg);border:1px dashed var(--input-border);padding:15px 16px;
+    display:flex;justify-content:space-between;align-items:center;gap:12px;cursor:pointer;
+    font-family:'IBM Plex Mono',monospace;font-size:0.8rem;color:var(--muted);
+    transition:border-color .3s var(--ease);
+  }
+  .file-field:hover{border-color:var(--accent);}
+  .file-field input{display:none;}
+
+  .success-msg{
+    display:none;margin-top:14px;padding:16px 18px;border:1px solid var(--accent);
+    font-family:'IBM Plex Mono',monospace;font-size:0.82rem;color:var(--ink);align-items:center;gap:10px;
+  }
+  .success-msg.show{display:flex;}
+  .success-dot{width:7px;height:7px;background:var(--accent);border-radius:50%;flex:none;}
+  @media (max-width:800px){.quote-grid{grid-template-columns:1fr;}.field-row{flex-direction:column;}}
+
+  /* ================= FOOTER ================= */
+  footer{padding:36px 0;border-top:1px solid var(--border);}
+  .footer-inner{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;}
+  .footer-logo{font-family:'Anton',sans-serif;font-size:1.15rem;letter-spacing:0.02em;text-transform:uppercase;}
+  .footer-meta{font-family:'IBM Plex Mono',monospace;font-size:0.76rem;color:var(--muted);letter-spacing:0.06em;text-align:right;}
+  .footer-meta a{border-bottom:1px solid transparent;transition:color .3s var(--ease), border-color .3s var(--ease);}
+  .footer-meta a:hover{color:var(--surface);border-color:var(--surface);}
+  @media (max-width:600px){.footer-inner{flex-direction:column;align-items:flex-start;}.footer-meta{text-align:left;}}
+
+  /* ================= MOBILE NAV ================= */
+  @media (max-width:900px){
+    .nav-links{
+      position:fixed;inset:0;background:var(--bg);flex-direction:column;justify-content:center;align-items:center;gap:30px;
+      transform:translateY(-100%);transition:transform .5s var(--ease);z-index:150;
+    }
+    .nav-links.open{transform:translateY(0);}
+    .nav-links a{font-size:1.15rem;}
+    .nav-cta{display:none;}
+    .menu-toggle{display:flex;}
+    .menu-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+    .menu-toggle.open span:nth-child(2){opacity:0;}
+    .menu-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  }
+
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header id="site-header">
+  <div class="container header-inner">
+    <a href="#top" class="logo-lockup">
+      <span class="logo-mark"></span>
+      <span class="logo-word">Vencore</span>
+    </a>
+    <nav>
+      <div class="nav-links" id="nav-links">
+        <a href="#services" class="nav-close">Services</a>
+        <a href="#projects" class="nav-close">Projects</a>
+        <a href="#about" class="nav-close">About</a>
+        <a href="#quote" class="nav-close">Contact</a>
+      </div>
+      <a href="#quote" class="btn-outline nav-cta">Get a Quote</a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero-grid-lines" aria-hidden="true"></div>
+  <div class="container hero-inner">
+    <p class="eyebrow reveal" style="margin-bottom:24px;">Concrete · Shotcrete · Steel Fixing</p>
+    <h1 class="reveal">The Structure Behind The Skyline.</h1>
+    <div class="hero-bottom reveal">
+      <p class="hero-sub">A structural concrete contractor delivering concrete placement, shotcrete and steel fixing for foundations, basements and civil works across Melbourne and Victoria.</p>
+      <div class="hero-actions">
+        <a href="#quote" class="btn-solid">Start a Project →</a>
+        <a href="#services" class="btn-outline">Our Capability</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-image real-photo reveal">
+    <img src="images/reinforcement-onsite.jpg" alt="Reinforcement steel cage being tied on site with a rebar tying tool, black and white.">
+    <div class="real-photo-caption"><span>Reinforcement — On Site</span><span class="idx">Melbourne, VIC</span></div>
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>&nbsp;Formwork&nbsp;·&nbsp;Slabs &amp; Cores&nbsp;·&nbsp;Wet-Mix Shotcrete&nbsp;·&nbsp;Reinforcement&nbsp;·&nbsp;Foundations&nbsp;·&nbsp;Civil Structures&nbsp;·&nbsp;Formwork&nbsp;·&nbsp;Slabs &amp; Cores&nbsp;·&nbsp;Wet-Mix Shotcrete&nbsp;·&nbsp;Reinforcement&nbsp;·&nbsp;Foundations&nbsp;·&nbsp;Civil Structures&nbsp;</span>
+  </div>
+</div>
+
+<!-- ============ INTRO STATEMENT ============ -->
+<section class="pad">
+  <div class="container">
+    <p class="intro-statement reveal"><strong>Vencore delivers specialised concrete construction services</strong> for projects that demand reliability, experience and precise execution.</p>
+    <div class="intro-meta reveal mono" style="font-size:0.85rem;letter-spacing:0.06em;text-transform:uppercase;">
+      <span>Based in Melbourne</span><span class="dot"></span><span>Working across Victoria</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section class="pad" id="services">
+  <div class="container">
+    <div class="services-head reveal">
+      <h2>What We Self-Perform</h2>
+      <span class="eyebrow">01 — Capability</span>
+    </div>
+    <div class="service-grid reveal">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <h3>Shotcrete</h3>
+        <p>Professional shotcrete application for basement walls, retaining walls, structural walls, capping beams and complex concrete structures.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <h3>Concrete Pumping</h3>
+        <p>Reliable concrete pumping services delivered by experienced operators using professional equipment.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <h3>Steel Fixing</h3>
+        <p>Installation of reinforcement steel, mesh, starter bars, dowels, cages and structural reinforcement systems.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <h3>Concrete Construction</h3>
+        <p>Concrete placement for walls, beams, footings, slabs, capping beams and structural concrete works.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">05</div>
+        <h3>Formwork &amp; Stripping</h3>
+        <p>Installation and removal of formwork for walls, beams, edges and structural concrete elements.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">06</div>
+        <h3>Construction Labour</h3>
+        <p>Experienced concrete workers, steel fixers and nozzlemen available for project-based and ongoing site support.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ PROJECTS ============ -->
+<section class="pad projects" id="projects">
+  <div class="container">
+    <div class="services-head reveal">
+      <h2>Selected Work</h2>
+      <span class="eyebrow">02 — On The Ground</span>
+    </div>
+    <div class="proj-grid reveal">
+      <div>
+        <div class="proj-photo real-photo"><img src="images/concrete-construction.jpg" alt="Worker finishing the edge of a freshly poured concrete wall by hand, close-up, black and white."><div class="real-photo-caption"><span>Concrete Construction</span><span class="idx">Melbourne, VIC</span></div></div>
+        <div class="proj-caption">
+          <span class="name">Concrete Construction</span>
+          <span class="meta">Wall Finishing · Melbourne</span>
+        </div>
+      </div>
+      <div>
+        <div class="proj-photo ph"><span class="ph-tag">[ Photo — shotcrete retaining wall ]</span></div>
+        <div class="proj-caption">
+          <span class="name">Shotcrete</span>
+          <span class="meta">Retaining Wall · Victoria</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="pad" id="about">
+  <div class="container">
+    <div class="about-grid reveal">
+      <div class="about">
+        <span class="eyebrow">03 — Who We Are</span>
+        <h2>Built From Site Experience</h2>
+      </div>
+      <div class="about-copy">
+        <p>Vencore is a self-performing structural concrete contractor. Our supervisors, nozzlemen, steel fixers and finishers work under one roof, providing specialised concrete, shotcrete, pumping and steel-fixing services across Melbourne and Victoria.</p>
+        <p>We work directly with builders, subcontractors, developers and project managers to deliver safe, practical and efficient outcomes on site — keeping quality, safety and program in our hands.</p>
+        <div class="about-tags">
+          <div class="about-tag">
+            <div class="big">Site-Led</div>
+            <div class="small">Hands-On Delivery</div>
+          </div>
+          <div class="about-tag">
+            <div class="big">Direct</div>
+            <div class="small">No Subbie Chain</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="why-strip reveal">
+      <div class="why-item">
+        <h4>Site Experience</h4>
+        <p>Hands-on experience across concrete, shotcrete and reinforcement projects.</p>
+      </div>
+      <div class="why-item">
+        <h4>Reliable Delivery</h4>
+        <p>A practical approach focused on safety, timing and quality.</p>
+      </div>
+      <div class="why-item">
+        <h4>Flexible Capability</h4>
+        <p>Complete scope delivery, specialist support or experienced site labour.</p>
+      </div>
+      <div class="why-item">
+        <h4>Built for Construction</h4>
+        <p>We understand site conditions, programme requirements and the realities of the work.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUOTE + CONTACT ============ -->
+<section class="quote-section pad" id="quote">
+  <div class="container">
+    <div class="quote-grid">
+      <div class="quote-copy reveal">
+        <span class="eyebrow" style="color:var(--muted);">04 — Get In Touch</span>
+        <h2 style="margin-top:18px;">Get a Quote</h2>
+        <p>Send us your drawings and program. We'll come back with a rate, a method and a start date.</p>
+        <div class="quote-contact">
+          Melbourne, Victoria<br>
+          <a href="mailto:estimating@vencore.com.au">estimating@vencore.com.au</a><br>
+          <a href="tel:+61390000000">+61 3 9000 0000</a><br>
+          ABN 00 000 000 000
+        </div>
+      </div>
+
+      <form class="reveal" id="quote-form">
+        <div class="form-col">
+          <div class="field-row">
+            <div class="field">
+              <label for="fullname">Full Name</label>
+              <input type="text" id="fullname" name="fullname" placeholder="Your name" required>
+            </div>
+            <div class="field">
+              <label for="company">Company</label>
+              <input type="text" id="company" name="company" placeholder="Company (optional)">
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" placeholder="04XX XXX XXX" required>
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="you@company.com.au" required>
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="location">Project Location</label>
+              <input type="text" id="location" name="location" placeholder="Suburb, VIC" required>
+            </div>
+            <div class="field">
+              <label for="start">Expected Start Date</label>
+              <input type="date" id="start" name="start">
+            </div>
+          </div>
+          <div class="field">
+            <label for="service">Service Required</label>
+            <select id="service" name="service" required>
+              <option value="" disabled selected>Select a service</option>
+              <option>Shotcrete</option>
+              <option>Concrete pumping</option>
+              <option>Steel fixing</option>
+              <option>Concrete placement</option>
+              <option>Formwork</option>
+              <option>Labour hire</option>
+              <option>Complete concrete package</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="description">Project &amp; Scope</label>
+            <textarea id="description" name="description" placeholder="Tell us about the scope of works"></textarea>
+          </div>
+          <label class="file-field" for="upload">
+            <span>Attach drawings or scope — PDF, JPG, PNG or DWG</span>
+            <span class="mono" id="file-name" style="font-size:0.72rem;">No file selected</span>
+            <input type="file" id="upload" name="upload" multiple>
+          </label>
+
+          <button type="submit" class="btn-dark">Send Enquiry →</button>
+          <div class="success-msg" id="success-msg">
+            <span class="success-dot"></span>
+            <span>Thanks — your enquiry's been received. We'll be in touch shortly.</span>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container footer-inner">
+    <span class="footer-logo">Vencore</span>
+    <span class="footer-meta">Concrete · Shotcrete · Steel Fixing — Melbourne &amp; Victoria<br><a href="#">Privacy Policy</a> · © <span id="year"></span> Vencore</span>
+  </div>
+</footer>
+
+<script>
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  const menuToggle = document.getElementById('menu-toggle');
+  const navLinks = document.getElementById('nav-links');
+  menuToggle.addEventListener('click', () => {
+    menuToggle.classList.toggle('open');
+    navLinks.classList.toggle('open');
+  });
+  document.querySelectorAll('.nav-close').forEach(link=>{
+    link.addEventListener('click', ()=>{
+      menuToggle.classList.remove('open');
+      navLinks.classList.remove('open');
+    });
+  });
+
+  // in-page smooth scroll, offset for the fixed header
+  document.querySelectorAll('a[href^="#"]').forEach(link=>{
+    link.addEventListener('click', (e)=>{
+      const targetId = link.getAttribute('href').slice(1);
+      const targetEl = document.getElementById(targetId);
+      if(!targetEl) return;
+      e.preventDefault();
+      const headerOffset = window.innerWidth <= 900 ? 66 : 82;
+      const top = targetEl.getBoundingClientRect().top + window.scrollY - headerOffset;
+      window.scrollTo({top, behavior:'smooth'});
+    });
+  });
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.12});
+  revealEls.forEach(el=>io.observe(el));
+
+  const uploadInput = document.getElementById('upload');
+  const fileNameEl = document.getElementById('file-name');
+  uploadInput.addEventListener('change', ()=>{
+    if(uploadInput.files.length === 0){ fileNameEl.textContent = 'No file selected'; }
+    else if(uploadInput.files.length === 1){ fileNameEl.textContent = uploadInput.files[0].name; }
+    else { fileNameEl.textContent = uploadInput.files.length + ' files selected'; }
+  });
+
+  const form = document.getElementById('quote-form');
+  const successMsg = document.getElementById('success-msg');
+  form.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    successMsg.classList.add('show');
+    successMsg.scrollIntoView({behavior:'smooth', block:'nearest'});
+    form.reset();
+    fileNameEl.textContent = 'No file selected';
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
