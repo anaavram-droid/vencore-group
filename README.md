@@ -10,14 +10,14 @@ if the file gets moved, opened locally, or deployed on its own. No separate
 **Option A — Vercel CLI (fastest)**
 ```bash
 npm i -g vercel      # if you don't already have it
-cd vencore-deploy
+cd vencore-deploy-final
 vercel               # first deploy, follow the prompts
 vercel --prod        # promote to production
 ```
 
 **Option B — Drag and drop**
 1. Go to https://vercel.com/new
-2. Drag this folder (containing `index.html` and `vercel.json`) onto the page
+2. Drag this whole folder (containing `index.html` and `vercel.json`) onto the page
 3. Deploy — no configuration needed, Vercel auto-detects it as a static site
 
 **Option C — GitHub**
@@ -34,5 +34,5 @@ haven't been updated yet:
 - The quote form currently only shows a success message on submit — wire it
   up to Formspree, Netlify Forms, or your own endpoint to actually receive
   enquiries (search for `form.addEventListener('submit'` in `index.html`).
-- The "On Site" gallery currently has 9 photos — add more the same way any
-  time by asking for them to be dropped in.
+- The "On Site" gallery currently has 9 photos — more can be added the same
+  way any time.

@@ -46,7 +46,7 @@
     position:relative;
   }
   body::after{
-    content:"";position:fixed;inset:0;pointer-events:none;z-index:999;
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:5;
     opacity:0.035;mix-blend-mode:overlay;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
@@ -144,7 +144,7 @@
     padding:14px 0;
     border-bottom:1px solid var(--border);
   }
-  .header-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;}
+  .header-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;position:relative;z-index:1;}
   .logo-lockup{display:flex;align-items:center;gap:12px;}
   .logo-mark{
     width:32px;height:32px;flex:none;
@@ -294,7 +294,29 @@
     color:rgba(242,241,238,0.85);
   }
   @media (max-width:900px){.proj-masonry{column-count:2;}}
-  @media (max-width:560px){.proj-masonry{column-count:1;}}
+
+  /* Mobile: swipeable horizontal strip instead of a single long stacked
+     column — 9 photos stacked vertically was too much scrolling on phones. */
+  @media (max-width:640px){
+    .proj-masonry{
+      display:flex;column-count:unset;margin-top:24px;
+      gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;
+      padding-bottom:6px;margin-left:-22px;margin-right:-22px;padding-left:22px;padding-right:22px;
+      -webkit-overflow-scrolling:touch;
+    }
+    .proj-masonry::-webkit-scrollbar{display:none;}
+    .proj-masonry{scrollbar-width:none;}
+    .proj-item{
+      flex:0 0 78%;scroll-snap-align:center;margin-bottom:0;
+    }
+    .proj-item img{height:280px;object-fit:cover;}
+    .proj-scroll-hint{
+      display:flex;align-items:center;gap:8px;margin-top:12px;
+      font-family:'IBM Plex Mono',monospace;font-size:0.7rem;letter-spacing:0.1em;
+      text-transform:uppercase;color:var(--muted);
+    }
+  }
+  @media (min-width:641px){.proj-scroll-hint{display:none;}}
 
   /* ================= ABOUT ================= */
   .about-grid{
@@ -679,8 +701,15 @@
 
 <script>
   const header = document.getElementById('site-header');
+  let scrollTicking = false;
   window.addEventListener('scroll', () => {
-    header.classList.toggle('scrolled', window.scrollY > 40);
+    if(!scrollTicking){
+      requestAnimationFrame(() => {
+        header.classList.toggle('scrolled', window.scrollY > 40);
+        scrollTicking = false;
+      });
+      scrollTicking = true;
+    }
   });
 
   const menuToggle = document.getElementById('menu-toggle');
