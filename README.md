@@ -2,15 +2,14 @@
 
 A single self-contained HTML file — all photos are embedded directly in
 `index.html` as base64 data, so there's nothing that can go missing or break
-if the file gets moved, opened locally, or deployed on its own. No separate
-`images/` folder to keep track of.
+if the file gets moved, opened locally, or deployed on its own.
 
 ## Deploy to Vercel
 
 **Option A — Vercel CLI (fastest)**
 ```bash
 npm i -g vercel      # if you don't already have it
-cd vencore-deploy-final
+cd vencore-deploy-v2
 vercel               # first deploy, follow the prompts
 vercel --prod        # promote to production
 ```
@@ -34,5 +33,5 @@ haven't been updated yet:
 - The quote form currently only shows a success message on submit — wire it
   up to Formspree, Netlify Forms, or your own endpoint to actually receive
   enquiries (search for `form.addEventListener('submit'` in `index.html`).
-- The "On Site" gallery currently has 9 photos — more can be added the same
-  way any time.
+- The "On Site" gallery currently has 9 photos, stacked in a masonry layout
+  (single column on mobile) — more can be added the same way any time.

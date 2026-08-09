@@ -294,29 +294,7 @@
     color:rgba(242,241,238,0.85);
   }
   @media (max-width:900px){.proj-masonry{column-count:2;}}
-
-  /* Mobile: swipeable horizontal strip instead of a single long stacked
-     column — 9 photos stacked vertically was too much scrolling on phones. */
-  @media (max-width:640px){
-    .proj-masonry{
-      display:flex;column-count:unset;margin-top:24px;
-      gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;
-      padding-bottom:6px;margin-left:-22px;margin-right:-22px;padding-left:22px;padding-right:22px;
-      -webkit-overflow-scrolling:touch;
-    }
-    .proj-masonry::-webkit-scrollbar{display:none;}
-    .proj-masonry{scrollbar-width:none;}
-    .proj-item{
-      flex:0 0 78%;scroll-snap-align:center;margin-bottom:0;
-    }
-    .proj-item img{height:280px;object-fit:cover;}
-    .proj-scroll-hint{
-      display:flex;align-items:center;gap:8px;margin-top:12px;
-      font-family:'IBM Plex Mono',monospace;font-size:0.7rem;letter-spacing:0.1em;
-      text-transform:uppercase;color:var(--muted);
-    }
-  }
-  @media (min-width:641px){.proj-scroll-hint{display:none;}}
+  @media (max-width:560px){.proj-masonry{column-count:1;}}
 
   /* ================= ABOUT ================= */
   .about-grid{
