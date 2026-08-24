@@ -1,15 +1,16 @@
-# Vencore — Landing Page
+# Vencore Group — Landing Page
 
-A single self-contained HTML file — all photos are embedded directly in
-`index.html` as base64 data, so there's nothing that can go missing or break
-if the file gets moved, opened locally, or deployed on its own.
+A single self-contained HTML file — the logo and all photos are embedded
+directly in `index.html` as base64 data, so there's nothing that can go
+missing or break if the file gets moved, opened locally, or deployed on
+its own.
 
 ## Deploy to Vercel
 
 **Option A — Vercel CLI (fastest)**
 ```bash
 npm i -g vercel      # if you don't already have it
-cd vencore-deploy-v2
+cd vencore-deploy-latest
 vercel               # first deploy, follow the prompts
 vercel --prod        # promote to production
 ```
@@ -35,3 +36,6 @@ haven't been updated yet:
   enquiries (search for `form.addEventListener('submit'` in `index.html`).
 - The "On Site" gallery currently has 9 photos, stacked in a masonry layout
   (single column on mobile) — more can be added the same way any time.
+- The logo is the "Vencore Group" lockup (V-mark + wordmark + GROUP
+  subtitle) in the header and footer — if the "Group" naming was only meant
+  for internal review, let me know and I'll swap in a VENCORE-only version.
