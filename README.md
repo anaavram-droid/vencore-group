@@ -1,41 +1,42 @@
 # Vencore Group — Landing Page
 
 A single self-contained HTML file — the logo and all photos are embedded
-directly in `index.html` as base64 data, so there's nothing that can go
-missing or break if the file gets moved, opened locally, or deployed on
-its own.
+directly in `index.html` as base64 data. No build step, no dependencies,
+no `package.json` needed.
 
-## Deploy to Vercel
+## Push to GitHub
 
-**Option A — Vercel CLI (fastest)**
 ```bash
-npm i -g vercel      # if you don't already have it
-cd vencore-deploy-latest
-vercel               # first deploy, follow the prompts
-vercel --prod        # promote to production
+cd vencore-deploy
+git init
+git add .
+git commit -m "Initial site"
+git branch -M main
+git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
+git push -u origin main
 ```
+(Create the empty repo on GitHub first at https://github.com/new — don't
+initialize it with a README there, since you already have one here.)
 
-**Option B — Drag and drop**
+## Deploy to Vercel from GitHub
+
 1. Go to https://vercel.com/new
-2. Drag this whole folder (containing `index.html` and `vercel.json`) onto the page
-3. Deploy — no configuration needed, Vercel auto-detects it as a static site
-
-**Option C — GitHub**
-1. Push this folder to a GitHub repo
-2. Import the repo at https://vercel.com/new
+2. Import the GitHub repo you just pushed
 3. Framework preset: "Other" (or leave on Auto) — no build command needed
+4. Deploy
 
-## Before you go live
-Search the file for these placeholders and swap in the real details if they
-haven't been updated yet:
+Every future push to `main` will auto-deploy.
+
+## Status
+- ✅ Quote form is live — submits to Formspree (`https://formspree.io/f/meaqpnyp`)
+  and shows a styled success/error message in place
+- ✅ All photos and the logo are embedded, nothing external to break
+- ⚠️ First form submission needs confirming — check the inbox tied to the
+  Formspree account for a one-time verification prompt after the first test
+  submission
+
+## Before you go fully live
+Double-check these are the real, final details:
 - Phone: `+61 478 723 718`
 - Email: `contact@vencore.com.au`
 - ABN: `26 699 063 520`
-- The quote form currently only shows a success message on submit — wire it
-  up to Formspree, Netlify Forms, or your own endpoint to actually receive
-  enquiries (search for `form.addEventListener('submit'` in `index.html`).
-- The "On Site" gallery currently has 9 photos, stacked in a masonry layout
-  (single column on mobile) — more can be added the same way any time.
-- The logo is the "Vencore Group" lockup (V-mark + wordmark + GROUP
-  subtitle) in the header and footer — if the "Group" naming was only meant
-  for internal review, let me know and I'll swap in a VENCORE-only version.
